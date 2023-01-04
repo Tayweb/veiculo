@@ -1,12 +1,15 @@
 package br.com.veiculo.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -27,6 +30,9 @@ public class Marca implements Serializable{
 	
 	@NotBlank(message = "Campo Ativo Obrigatório")
 	private String ativo;
+	
+	@OneToMany(mappedBy = "marca")
+	private List<Veiculo> veiculos = new ArrayList<Veiculo>();
 	
 
 	public Long getId() {
@@ -52,5 +58,15 @@ public class Marca implements Serializable{
 	public void setAtivo(String ativo) {
 		this.ativo = ativo;
 	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
+	}
+	
+	
 	
 }

@@ -21,28 +21,16 @@ import br.com.veiculo.model.Marca;
 import br.com.veiculo.service.MarcaService;
 import br.com.veiculo.utils.MensagemErroConstants;
 
-@Controller(value = "marca-viculo")
+@Controller
 public class MarcaController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private MarcaService marcaVeiculoService;
 
-	@GetMapping(value = "/")
-	public ModelAndView init() {
-		ModelAndView modelAndView = new ModelAndView("views/home");
-		return modelAndView;
-	}
-
-	@GetMapping(value = "/home")
-	public ModelAndView inicio() {
-		ModelAndView modelAndView = new ModelAndView("views/home");
-		return modelAndView;
-	}
-
-	@GetMapping(value = "/marca-veiculo")
+	@GetMapping(value = "/marca")
 	public ModelAndView getMarcaVeiculo() {
-		ModelAndView modelAndView = new ModelAndView("views/marca-veiculo");
+		ModelAndView modelAndView = new ModelAndView("views/marca");
 
 		modelAndView.addObject("marcaList", marcaVeiculoService.getMarca());
 		modelAndView.addObject("marca", new Marca());
@@ -54,7 +42,7 @@ public class MarcaController implements Serializable {
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			ModelAndView modelAndView = new ModelAndView("views/marca-veiculo");
+			ModelAndView modelAndView = new ModelAndView("views/marca");
 			modelAndView.addObject("marcaList", marcaVeiculoService.getMarca());
 			modelAndView.addObject("marca", marcaVeiculo);
 
@@ -68,7 +56,7 @@ public class MarcaController implements Serializable {
 
 		marcaVeiculoService.save(marcaVeiculo);
 
-		ModelAndView modelAndView = new ModelAndView("views/marca-veiculo");
+		ModelAndView modelAndView = new ModelAndView("views/marca");
 		modelAndView.addObject("marcaList", marcaVeiculoService.getMarca());
 		modelAndView.addObject("marca", new Marca());
 		modelAndView.addObject("sucess", MensagemErroConstants.CADASTRADO_COM_SUCESSO);
@@ -80,7 +68,7 @@ public class MarcaController implements Serializable {
 	public ModelAndView editarMarcaVeiculo(@RequestParam("id") Long id, Marca marcaVeiculo)
 			throws NotFoundException {
 
-		ModelAndView modelAndView = new ModelAndView("views/marca-veiculo");
+		ModelAndView modelAndView = new ModelAndView("views/marca");
 		modelAndView.addObject("marcaList", marcaVeiculoService.getMarca());
 		modelAndView.addObject("marca", marcaVeiculoService.findByMarcaId(id));
 		return modelAndView;
@@ -89,7 +77,7 @@ public class MarcaController implements Serializable {
 	@GetMapping(value = "/deletar-marca-veiculo")
 	public ModelAndView deletarMarcaVeiculo(@RequestParam("id") Long id) {
 
-		ModelAndView modelAndView = new ModelAndView("views/marca-veiculo");
+		ModelAndView modelAndView = new ModelAndView("views/marca");
 		marcaVeiculoService.deletarMarca(id);
 		modelAndView.addObject("marcaList", marcaVeiculoService.getMarca());
 		modelAndView.addObject("sucess", MensagemErroConstants.EXCLUIDO_COM_SUCESSO);
@@ -101,7 +89,7 @@ public class MarcaController implements Serializable {
 	@PostMapping(value = "/filtro")
 	public ModelAndView filtroPesquisa(@ModelAttribute("filtro") Marca marcaVeiculo) {
 		
-		ModelAndView modelAndView = new ModelAndView("views/marca-veiculo");
+		ModelAndView modelAndView = new ModelAndView("views/marca");
 		modelAndView.addObject("filtro", marcaVeiculo);
 		modelAndView.addObject("marcaList", marcaVeiculoService.filtroPesquisa(marcaVeiculo));
 		modelAndView.addObject("pesquisa", marcaVeiculo);

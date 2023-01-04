@@ -46,57 +46,46 @@
               <h5 class="card-title">Cadastrar Veiculo</h5>
 
               <!-- General Form Elements -->
-              <form>
+              <form action="salvar" method="post">
+              
+              <input type="hidden" name="id" value="${veiculo.id}" />
+              
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Nome</label>
+                  <label for="inputText" class="col-sm-3 col-form-label">Nome</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="nome" value="${veiculo.nome}">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Modelo</label>
+                  <label for="inputEmail" class="col-sm-3 col-form-label">Modelo</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control">
+                    <input type="text" class="form-control" name="modelo" value="${veiculo.modelo}">
                   </div>
                 </div>
                 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Marca Ativa</label>
+                  <label class="col-sm-3 col-form-label">Marca</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Selecione</option>
-                      <option value="1">Ford</option>
-                      <option value="2">Wolksvagem</option>
-                      <option value="3">BMW</option>
+                    <select class="form-select" aria-label="Default select example" name="marca" >
+                    <option selected disabled="disabled">Selecione</option>
+                    <c:forEach items='${marcaList}' var="marca">
+                      <option value="${marca.id}"><c:out value="${marca.nome}"></c:out></option>
+                      </c:forEach>
                     </select>
                   </div>
                 </div>
                 
                 <div class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Items do Veículo</legend>
+                  <legend class="col-form-label col-sm-3 pt-0">Itens</legend>
                   <div class="col-sm-10">
-
+ 					<c:forEach items='${itemList}' var="item">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck1">
-                      <label class="form-check-label" for="gridCheck1">
-                        Radio
-                      </label>
+                   
+                      <input class="form-check-input" type="checkbox" id="gridCheck1" name="itens" value="${item.id}">
+                      <label class="form-check-label" for="gridCheck1"><c:out value="${item.nome}"></c:out></label>
+                      
                     </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck2">
-                      <label class="form-check-label" for="gridCheck2">
-                        Painel digital
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck3">
-                      <label class="form-check-label" for="gridCheck3">
-                        Jogo de roda
-                      </label>
-                    </div>
-
+					</c:forEach>
                   </div>
                 </div>
                 
@@ -120,57 +109,57 @@
 
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title">Veículos Cadastradas</h5>
+<!-- 							<h5 class="card-title">Veículos Cadastrados</h5> -->
 							
-							<h6 class="card-title">Filtrar Por</h6>
-							<form action="filtro" method="post">
+<!-- 							<h6 class="card-title">Filtrar Por</h6> -->
+<!-- 							<form action="filtro" method="post"> -->
 
-								<div class="input-group mb-3">
-									<input type="text" class="form-control"
-										placeholder="Nome da Marca"
-										aria-describedby="basic-addon2" name="nome" value="${pesquisa.nome}">
-									<div class="input-group-append">
-										<button class="btn btn-secondary" style="background-color: #012970" type="submit"><i class="bi bi-search"></i></button>
-									</div>
-								</div>
+<!-- 								<div class="input-group mb-3"> -->
+<!-- 									<input type="text" class="form-control" -->
+<!-- 										placeholder="Nome da Marca" -->
+<%-- 										aria-describedby="basic-addon2" name="nome" value="${pesquisa.nome}"> --%>
+<!-- 									<div class="input-group-append"> -->
+<!-- 										<button class="btn btn-secondary" style="background-color: #012970" type="submit"><i class="bi bi-search"></i></button> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 
-								<select class="form-select" aria-label="Default select example"
-									name="ativo">
-									<option disabled="disabled" selected style="color: #70757D">Marca
-										Ativa</option>
-									<option value="Sim">Sim</option>
-									<option value="Nao">Não</option>
-								</select>
-							</form>	
+<!-- 								<select class="form-select" aria-label="Default select example" -->
+<!-- 									name="ativo"> -->
+<!-- 									<option disabled="disabled" selected style="color: #70757D">Marca -->
+<!-- 										Ativa</option> -->
+<!-- 									<option value="Sim">Sim</option> -->
+<!-- 									<option value="Nao">Não</option> -->
+<!-- 								</select> -->
+<!-- 							</form>	 -->
 								
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">Nome</th>
-										<th scope="col">Ativo</th>
-										<th scope="col">Ação</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items='${veiculo}' var="marca">
-										<c:url var="updateLink" value="/editar-marca-veiculo">
-											<c:param name="id" value="${marca.id}" />
-										</c:url>
+<!-- 							<table class="table"> -->
+<!-- 								<thead> -->
+<!-- 									<tr> -->
+<!-- 										<th scope="col">Nome</th> -->
+<!-- 										<th scope="col">Ativo</th> -->
+<!-- 										<th scope="col">Ação</th> -->
+<!-- 									</tr> -->
+<!-- 								</thead> -->
+<!-- 								<tbody> -->
+<%-- 									<c:forEach items='${veiculo}' var="marca"> --%>
+<%-- 										<c:url var="updateLink" value="/editar-marca-veiculo"> --%>
+<%-- 											<c:param name="id" value="${marca.id}" /> --%>
+<%-- 										</c:url> --%>
 
-										<c:url var="deleteLink" value="/deletar-marca-veiculo">
-											<c:param name="id" value="${marca.id}" />
-										</c:url>
+<%-- 										<c:url var="deleteLink" value="/deletar-marca-veiculo"> --%>
+<%-- 											<c:param name="id" value="${marca.id}" /> --%>
+<%-- 										</c:url> --%>
 
-										<tr>
-											<td><c:out value="${marca.nome}"></c:out></td>
-											<td><c:out value="${marca.ativo}"></c:out></td>
-											<td><a href="${updateLink}" style="font-size: 1.2rem"><i
-													class="bi bi-pencil-square"></i></a> <a href="${deleteLink}"><i
-													class="bi bi-trash" style="color: red; padding: 10px; font-size: 1.2rem"></i></a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+<!-- 										<tr> -->
+<%-- 											<td><c:out value="${marca.nome}"></c:out></td> --%>
+<%-- 											<td><c:out value="${marca.ativo}"></c:out></td> --%>
+<%-- 											<td><a href="${updateLink}" style="font-size: 1.2rem"><i --%>
+<%-- 													class="bi bi-pencil-square"></i></a> <a href="${deleteLink}"><i --%>
+<!-- 													class="bi bi-trash" style="color: red; padding: 10px; font-size: 1.2rem"></i></a></td> -->
+<!-- 										</tr> -->
+<%-- 									</c:forEach> --%>
+<!-- 								</tbody> -->
+<!-- 							</table> -->
 
 						</div>
 					</div>

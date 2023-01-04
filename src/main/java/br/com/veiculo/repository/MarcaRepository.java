@@ -19,5 +19,8 @@ public interface MarcaRepository extends JpaRepository<Marca, Long>{
 	
 	@Query(value = "SELECT * FROM marca WHERE nome LIKE (concat( ?1,'%')) AND ativo=?2", nativeQuery = true)
 	List<Marca> filtrarPesquisaCompleto(String nome, String ativo);
+	
+	@Query(value = "SELECT m FROM Marca m WHERE m.ativo ='Sim'")
+	List<Marca> getMarcasAtivas();
 
 }

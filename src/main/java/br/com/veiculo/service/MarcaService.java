@@ -31,6 +31,13 @@ public class MarcaService {
 		return listaMarcaVeiculos.stream().sorted((m1, m2) -> m1.getNome().compareTo(m2.getNome()))
 				.collect(Collectors.toList());
 	}
+	
+	@Transactional
+	public List<Marca> getMarcaAtivas() {
+		List<Marca> listaMarcaVeiculos = marcaVeiculoRepository.getMarcasAtivas();
+		return listaMarcaVeiculos.stream().sorted((m1, m2) -> m1.getNome().compareTo(m2.getNome()))
+				.collect(Collectors.toList());
+	}
 
 	public Marca findByMarcaId(Long id) throws NotFoundException {
 

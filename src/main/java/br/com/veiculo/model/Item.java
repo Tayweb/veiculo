@@ -47,5 +47,10 @@ public class Item implements Serializable {
 	public void setVeiculos(Set<Veiculo> veiculos) {
 		this.veiculos = veiculos;
 	}
+	
+	public void addVeiculo(Veiculo veiculos) {
+		this.veiculos.add(veiculos);
+
+	}
 
 }

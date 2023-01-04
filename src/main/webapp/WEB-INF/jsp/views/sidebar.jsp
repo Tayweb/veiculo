@@ -20,7 +20,7 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
           <li>
-            <a href="/marca-veiculo">
+            <a href="/marca">
               <i class="bi bi-circle"></i><span>Cadastrar Marca de Veiculo</span>
             </a>
           </li>
