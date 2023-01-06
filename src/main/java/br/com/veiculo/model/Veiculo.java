@@ -79,5 +79,7 @@ public class Veiculo implements Serializable{
 	public void setItens(Set<Item> itens) {
 		this.itens = itens;
 	}
+	
+	
 
 }

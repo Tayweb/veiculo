@@ -107,59 +107,66 @@
 			<div class="row">
 				<div class="col-lg-6">
 
-					<div class="card">
+		<div class="card">
 						<div class="card-body">
-<!-- 							<h5 class="card-title">Veículos Cadastrados</h5> -->
+							<h5 class="card-title">Veículos Cadastrados</h5>
 							
-<!-- 							<h6 class="card-title">Filtrar Por</h6> -->
-<!-- 							<form action="filtro" method="post"> -->
+							<h6 class="card-title">Filtrar Por</h6>
+							<form action="filtro" method="post">
 
-<!-- 								<div class="input-group mb-3"> -->
-<!-- 									<input type="text" class="form-control" -->
-<!-- 										placeholder="Nome da Marca" -->
-<%-- 										aria-describedby="basic-addon2" name="nome" value="${pesquisa.nome}"> --%>
-<!-- 									<div class="input-group-append"> -->
-<!-- 										<button class="btn btn-secondary" style="background-color: #012970" type="submit"><i class="bi bi-search"></i></button> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+								<div class="input-group mb-3">
+									<input type="text" class="form-control"
+										placeholder="Nome da Marca"
+										aria-describedby="basic-addon2" name="nome" value="${pesquisa.nome}">
+									<div class="input-group-append">
+										<button class="btn btn-secondary" style="background-color: #012970" type="submit"><i class="bi bi-search"></i></button>
+									</div>
+								</div>
 
-<!-- 								<select class="form-select" aria-label="Default select example" -->
-<!-- 									name="ativo"> -->
-<!-- 									<option disabled="disabled" selected style="color: #70757D">Marca -->
-<!-- 										Ativa</option> -->
-<!-- 									<option value="Sim">Sim</option> -->
-<!-- 									<option value="Nao">Não</option> -->
-<!-- 								</select> -->
-<!-- 							</form>	 -->
+								<select class="form-select" aria-label="Default select example"
+									name="ativo">
+									<option disabled="disabled" selected style="color: #70757D">Marca
+										Ativa</option>
+									<option value="Sim">Sim</option>
+									<option value="Nao">Não</option>
+								</select>
+							</form>	
 								
-<!-- 							<table class="table"> -->
-<!-- 								<thead> -->
-<!-- 									<tr> -->
-<!-- 										<th scope="col">Nome</th> -->
-<!-- 										<th scope="col">Ativo</th> -->
-<!-- 										<th scope="col">Ação</th> -->
-<!-- 									</tr> -->
-<!-- 								</thead> -->
-<!-- 								<tbody> -->
-<%-- 									<c:forEach items='${veiculo}' var="marca"> --%>
-<%-- 										<c:url var="updateLink" value="/editar-marca-veiculo"> --%>
-<%-- 											<c:param name="id" value="${marca.id}" /> --%>
-<%-- 										</c:url> --%>
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Nome</th>
+										<th scope="col">Modelo</th>
+										<th scope="col">Marca</th>
+										<th scope="col">Itens</th>
+										<th scope="col">Ação</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items='${veiculoList}' var="veiculo">
+										<c:url var="updateLink" value="/editar-veiculo">
+											<c:param name="id" value="${veiculo.id}" />
+										</c:url>
 
-<%-- 										<c:url var="deleteLink" value="/deletar-marca-veiculo"> --%>
-<%-- 											<c:param name="id" value="${marca.id}" /> --%>
-<%-- 										</c:url> --%>
+										<c:url var="deleteLink" value="/deletar-veiculo">
+											<c:param name="id" value="${veiculo.id}" />
+										</c:url>
 
-<!-- 										<tr> -->
-<%-- 											<td><c:out value="${marca.nome}"></c:out></td> --%>
-<%-- 											<td><c:out value="${marca.ativo}"></c:out></td> --%>
-<%-- 											<td><a href="${updateLink}" style="font-size: 1.2rem"><i --%>
-<%-- 													class="bi bi-pencil-square"></i></a> <a href="${deleteLink}"><i --%>
-<!-- 													class="bi bi-trash" style="color: red; padding: 10px; font-size: 1.2rem"></i></a></td> -->
-<!-- 										</tr> -->
-<%-- 									</c:forEach> --%>
-<!-- 								</tbody> -->
-<!-- 							</table> -->
+										<tr>
+											<td><c:out value="${veiculo.nome}"></c:out></td>
+											<td><c:out value="${veiculo.modelo}"></c:out></td>
+											<td><c:out value="${veiculo.marca.nome}"></c:out></td>
+							
+											<c:forEach items='${veiculo.itens}' var="veiculo">
+											<td><c:out value="${veiculo.nome}"></c:out></td>
+											</c:forEach>
+											<td><a href="${updateLink}" style="font-size: 1.2rem"><i
+													class="bi bi-pencil-square"></i></a> <a href="${deleteLink}"><i
+													class="bi bi-trash" style="color: red; padding: 10px; font-size: 1.2rem"></i></a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 
 						</div>
 					</div>

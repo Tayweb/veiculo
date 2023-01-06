@@ -1,5 +1,6 @@
 package br.com.veiculo.service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -41,5 +42,10 @@ public class VeiculoService {
 		}).collect(Collectors.toSet()));
 
 		return veiculoRepository.save(veiculo);
+	}
+
+	public List<Veiculo> getVeiculo() {
+		List<Veiculo> veiculos = veiculoRepository.findAll();
+		return veiculos;
 	}
 }
