@@ -78,12 +78,19 @@
 										</select>
 									</div>
 								</div>
+								
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-link  " data-toggle="modal"
 									data-target="#exampleModal"
 									style="margin-bottom: 50px; border: none">
 									Selecionar Item <i class="bi bi-arrow-up-right-square"></i>
 								</button>
+								<div class="card card-body">
+								<h6>Itens Selecionados</h6>
+   								<c:forEach items='${veiculo.itens}' var="item">
+   								<c:out value="${item.nome}"></c:out>
+   								</c:forEach>
+  								</div>
 
 								<!-- Modal -->
 								<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -182,11 +189,11 @@
 								</thead>
 								<tbody>
 									<c:forEach items='${veiculoList}' var="veiculo">
-										<c:url var="updateLink" value="/editar">
+										<c:url var="updateLink" value="/editar-veiculo">
 											<c:param name="id" value="${veiculo.id}" />
 										</c:url>
 
-										<c:url var="deleteLink" value="/deletar">
+										<c:url var="deleteLink" value="/deletar-veiculo">
 											<c:param name="id" value="${veiculo.id}" />
 										</c:url>
 

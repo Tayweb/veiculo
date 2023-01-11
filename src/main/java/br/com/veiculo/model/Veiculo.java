@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Veiculo implements Serializable{
 	@JoinColumn(name = "marca_id")
 	private Marca marca;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.PERSIST })
 	@JoinTable(name = "veiculo_itens", uniqueConstraints = @UniqueConstraint(columnNames = { "veiculo_id",
 	"itens_id" }, name = "unique_itens_veiculo"), joinColumns = @JoinColumn(name = "veiculo_id", 
 	referencedColumnName = "id", table = "veiculo"),

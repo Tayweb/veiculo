@@ -61,16 +61,41 @@
 								<fieldset class="row mb-3">
 									<legend class="col-form-label col-sm-2 pt-0">Ativo</legend>
 									<div class="col-sm-10">
+									<c:if test="${marca.ativo == 'Sim'}">
 										<div class="form-check">
+										  
 											<input class="form-check-input" type="radio" name="ativo"
-												id="gridRadios1" value="Sim" checked> <label
+												id="gridRadios1" value="Sim" checked>
+												 <label
 												class="form-check-label" for="gridRadios1"> Sim </label>
 										</div>
+										</c:if>
+										<c:if test="${marca.ativo == null || marca.ativo == 'Nao'}">
 										<div class="form-check">
+										  
 											<input class="form-check-input" type="radio" name="ativo"
-												id="gridRadios2" value="Nao"> <label
+												id="gridRadios1" value="Sim" checked>
+												 <label
+												class="form-check-label" for="gridRadios1"> Sim </label>
+										</div>
+										</c:if>
+										<c:if test="${marca.ativo == 'Nao'}">
+										<div class="form-check">
+										
+											<input class="form-check-input" type="radio" name="ativo"
+												id="gridRadios2" value="Nao" checked>
+												 <label
 												class="form-check-label" for="gridRadios2"> Não </label>
 										</div>
+										</c:if>
+										<c:if test="${marca.ativo == null || marca.ativo == 'Sim'}">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="ativo"
+												id="gridRadios2" value="Nao">
+												 <label
+												class="form-check-label" for="gridRadios2"> Não </label>
+										</div>
+										</c:if>
 
 									</div>
 								</fieldset>

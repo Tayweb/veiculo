@@ -22,8 +22,4 @@ public class ItemService {
 		return itemRepository.getById(id);
 	}
 	
-	public List<Item> listaItensVeiculo(Long idVeiculo) {
-		return itemRepository.listarItensVeiculo(idVeiculo);
-	}
-	
 }

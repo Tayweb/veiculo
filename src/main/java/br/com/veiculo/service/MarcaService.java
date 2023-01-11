@@ -31,7 +31,7 @@ public class MarcaService {
 		return listaMarcaVeiculos.stream().sorted((m1, m2) -> m1.getNome().compareTo(m2.getNome()))
 				.collect(Collectors.toList());
 	}
-	
+
 	@Transactional
 	public List<Marca> getMarcaAtivas() {
 		List<Marca> listaMarcaVeiculos = marcaVeiculoRepository.getMarcasAtivas();
@@ -52,20 +52,20 @@ public class MarcaService {
 
 	@Transactional
 	public List<Marca> filtroPesquisa(Marca marcaVeiculo) {
-		
+
 		if (marcaVeiculo.getNome().isEmpty()) {
 			marcaVeiculo.setNome(null);
 		}
 
 		if (Objects.nonNull(marcaVeiculo.getNome()) && Objects.isNull(marcaVeiculo.getAtivo())) {
 			return marcaVeiculoRepository.filtrarPesquisaPorNome(marcaVeiculo.getNome());
-			
+
 		} else if (Objects.nonNull(marcaVeiculo.getAtivo()) && Objects.isNull(marcaVeiculo.getNome())) {
 			return marcaVeiculoRepository.filtrarPesquisaPorAtivo(marcaVeiculo.getAtivo());
-			
+
 		} else if (Objects.nonNull(marcaVeiculo.getNome()) && Objects.nonNull(marcaVeiculo.getAtivo())) {
 			return marcaVeiculoRepository.filtrarPesquisaCompleto(marcaVeiculo.getNome(), marcaVeiculo.getAtivo());
-			
+
 		} else {
 			return getMarca();
 		}
